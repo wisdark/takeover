@@ -27,6 +27,7 @@ services = {
 	'Fastly'     : {'code':'[300-499]','error':r'Fastly error\: unknown domain\:'},
 	'FeedPress'  : {'code':'[300-499]','error':r'The feed has not been found\.'},
 	'Ghost'      : {'code':'[300-499]','error':r'The thing you were looking for is no longer here\, or never was'},
+	'Heroku'     : {'code':'[300-499]','error':r'no-such-app.html'},
 }
 
 # -- colors 
