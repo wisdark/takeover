@@ -226,7 +226,8 @@ def main():
 					file.write('SERVICE : %s\r\n'%(service))
 					file.write('ERRORS  : %s\r\n'%(error))
 	else:help()
-	file.close()
+	if set_output:
+		file.close()
 try:
 	main()
 except KeyboardInterrupt as e:
