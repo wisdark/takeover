@@ -142,7 +142,7 @@ def help():
 	print "\t-t --set-timeout\t\tSet a request timeout. Default value is 20 seconds\n"
 	print "Example:"
 	print "\t%s --sub-domain test.test.com"%(sys.argv[0])
-	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt\n"%(sys.argv[0])
+	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt"%(sys.argv[0])
 	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt --set-timeout 3\n"%(sys.argv[0])
 	sys.exit()
 
