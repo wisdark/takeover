@@ -139,7 +139,7 @@ def help():
 	print "\t-l --sub-domain-list\tScan multiple targets in a text file"
 	print "\t-p --set-proxy\t\tUse a proxy to connect to the target URL"
 	print "\t-o --set-output\t\tUse this setting for save a file"
-	print "\t-t --set-timeout\t\tSet a request timeout. Default value is 20 seconds\n"
+	print "\t-t --set-timeout\tSet a request timeout. Default value is 20 seconds\n"
 	print "Example:"
 	print "\t%s --sub-domain test.test.com"%(sys.argv[0])
 	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt"%(sys.argv[0])
