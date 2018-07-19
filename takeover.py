@@ -193,7 +193,7 @@ def main():
 	if len(sys.argv) < 2: help()
 	try:
 		opts,args = getopt.getopt(sys.argv[1:],'s:l:p:o:t:',
-			['sub-domain=','sub-domain-list=','set-proxy=','set-output=','set-timeout'])
+			['sub-domain=','sub-domain-list=','set-proxy=','set-output=','set-timeout='])
 	except Exception as e:
 		warn("%s"%e.message)
 		time.sleep(1)
