@@ -204,7 +204,7 @@ def main():
 		if o in ('-l','--sub-domain-list'):sub_domain_list = readfile(a)
 		if o in ('-p','--set-proxy'):set_proxy = sett_proxy(a)
 		if o in ('-o','--set-output'):set_output = a
-		if o in ('-t','--set-timeout'):set_timeout = a
+		if o in ('-t','--set-timeout'):set_timeout = int(a)
 	# ---
 	if set_output:
 		file = open(set_output,"wb")
