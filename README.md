@@ -76,4 +76,5 @@ $ python takeover.py --sub-domain site.site.com
 $ python takeover.py --sub-domain site.site.com --set-proxy xxx.xxx.xxx.xxx
 $ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt
 $ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt --set-proxt xxx.xxx.xxx.xxx
+$ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt --set-timeout 3
 ```

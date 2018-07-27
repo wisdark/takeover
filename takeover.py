@@ -92,16 +92,16 @@ def plus(string): print("{}[+]{} {}{}{}".format(g,e_,g_,str(string),e_))
 def warn(string): print("{}[!]{} {}{}{}".format(r,e_,r_,str(string),e_))
 def info(string): print("{}[i]{} {}{}{}".format(y,e_,y_,str(string),e_))
 
-def request(url,proxy):
+def request(url,proxy,timeout):
 	headers = {'User-Agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'}
 	try:
 		req = requests.packages.urllib3.disable_warnings(
 			urllib3.exceptions.InsecureRequestWarning
 			)
 		if proxy:
-			req = requests.get(url=url,headers=headers,proxies=proxy)
+			req = requests.get(url=url,headers=headers,proxies=proxy,timeout=timeout)
 		else:
-			req = requests.get(url=url,headers=headers)
+			req = requests.get(url=url,headers=headers,timeout=timeout)
 		return req.status_code,req.content
 	except Exception as e:
 		pass
@@ -138,10 +138,12 @@ def help():
 	print "\t-s --sub-domain\t\tSet sub-domain URL (e.g: admin.example.com)"
 	print "\t-l --sub-domain-list\tScan multiple targets in a text file"
 	print "\t-p --set-proxy\t\tUse a proxy to connect to the target URL"
-	print "\t-o --set-output\t\tUse this setting for save a file\n"
+	print "\t-o --set-output\t\tUse this setting for save a file"
+	print "\t-t --set-timeout\tSet a request timeout. Default value is 20 seconds\n"
 	print "Example:"
 	print "\t%s --sub-domain test.test.com"%(sys.argv[0])
-	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt\n"%(sys.argv[0])
+	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt"%(sys.argv[0])
+	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt --set-timeout 3\n"%(sys.argv[0])
 	sys.exit()
 
 def sett_proxy(proxy):
@@ -186,11 +188,12 @@ def main():
 	set_output = None
 	sub_domain = None
 	sub_domain_list = None
+	set_timeout = 20
 	# ---
 	if len(sys.argv) < 2: help()
 	try:
-		opts,args = getopt.getopt(sys.argv[1:],'s:l:p:o:',
-			['sub-domain=','sub-domain-list=','set-proxy=','set-output='])
+		opts,args = getopt.getopt(sys.argv[1:],'s:l:p:o:t:',
+			['sub-domain=','sub-domain-list=','set-proxy=','set-output=','set-timeout='])
 	except Exception as e:
 		warn("%s"%e.message)
 		time.sleep(1)
@@ -201,6 +204,7 @@ def main():
 		if o in ('-l','--sub-domain-list'):sub_domain_list = readfile(a)
 		if o in ('-p','--set-proxy'):set_proxy = sett_proxy(a)
 		if o in ('-o','--set-output'):set_output = a
+		if o in ('-t','--set-timeout'):set_timeout = int(a)
 	# ---
 	if set_output:
 		file = open(set_output,"wb")
@@ -208,7 +212,7 @@ def main():
 	if sub_domain:
 		plus('Starting scanning...')
 		info('Target url... %s'%sub_domain)
-		status,content = request(sub_domain,set_proxy)
+		status,content = request(sub_domain,set_proxy,set_timeout)
 		service,error = checker(status,content)
 		if service and error:
 			plus('Found service: %s'%service)
@@ -218,7 +222,7 @@ def main():
 		for sub_domain in sub_domain_list:
 			sub_domain = check_url(sub_domain)
 			info('Target url... %s'%sub_domain)
-			status,content = request(sub_domain,set_proxy)
+			status,content = request(sub_domain,set_proxy,set_timeout)
 			service,error = checker(status,content)
 			if service and error:
 				if set_output:
