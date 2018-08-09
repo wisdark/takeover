@@ -1,6 +1,6 @@
 #!/usr/bin/env python 
 #
-# TakeOver - Detect Potential Takeover Attacks
+# TakeOver - Subdomain TakeOver Finder
 # Coded by Momo Outaadi (m4ll0k)
 
 import re
