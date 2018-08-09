@@ -1,4 +1,4 @@
-# TakeOver
+# TakeOver - Subdomain Takeover Finder
 
 ![screen](https://raw.githubusercontent.com/m4ll0k/takeover/master/screen.png)
 
