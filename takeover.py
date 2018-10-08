@@ -3,6 +3,8 @@
 # TakeOver - Subdomain TakeOver Finder
 # Coded by Momo Outaadi (m4ll0k)
 
+from __future__ import print_function
+
 import re
 import os
 import sys
@@ -123,27 +125,27 @@ def checker(status,content):
 	return None,None
 
 def banner():
-	print "                            "
-	print "   /~\\                     "
-	print "  C oo   ---------------    "
- 	print " _( ^)  |T|A|K|E|O|V|E|R|   "
-	print "/   ~\\  ----------------   "
-	print "#> by Momo Outaadi (m4ll0k) "
-	print "#> http://github.com/m4ll0k "
-	print "-"*40
+	print("                            ")
+	print("   /~\\                     ")
+	print("  C oo   ---------------    ")
+ 	print(" _( ^)  |T|A|K|E|O|V|E|R|   ")
+	print("/   ~\\  ----------------   ")
+	print("#> by Momo Outaadi (m4ll0k) ")
+	print("#> http://github.com/m4ll0k ")
+	print("-"*40)
 
 def help():
 	banner()
-	print "Usage: takeover.py [OPTIONS]\n"
-	print "\t-s --sub-domain\t\tSet sub-domain URL (e.g: admin.example.com)"
-	print "\t-l --sub-domain-list\tScan multiple targets in a text file"
-	print "\t-p --set-proxy\t\tUse a proxy to connect to the target URL"
-	print "\t-o --set-output\t\tUse this setting for save a file"
-	print "\t-t --set-timeout\tSet a request timeout. Default value is 20 seconds\n"
-	print "Example:"
-	print "\t%s --sub-domain test.test.com"%(sys.argv[0])
-	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt"%(sys.argv[0])
-	print "\t%s --sub-domain-list sub.txt --set-output sub_output.txt --set-timeout 3\n"%(sys.argv[0])
+	print("Usage: takeover.py [OPTIONS]\n")
+	print("\t-s --sub-domain\t\tSet sub-domain URL (e.g: admin.example.com)")
+	print("\t-l --sub-domain-list\tScan multiple targets in a text file")
+	print("\t-p --set-proxy\t\tUse a proxy to connect to the target URL")
+	print("\t-o --set-output\t\tUse this setting for save a file")
+	print("\t-t --set-timeout\tSet a request timeout. Default value is 20 seconds\n")
+	print("Example:")
+	print("\t%s --sub-domain test.test.com"%(sys.argv[0]))
+	print("\t%s --sub-domain-list sub.txt --set-output sub_output.txt"%(sys.argv[0]))
+	print("\t%s --sub-domain-list sub.txt --set-output sub_output.txt --set-timeout 3\n"%(sys.argv[0]))
 	sys.exit()
 
 def sett_proxy(proxy):
