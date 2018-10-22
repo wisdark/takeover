@@ -125,13 +125,12 @@ def checker(status,content):
 	return None,None
 
 def banner():
-	print("                            ")
-	print("   /~\\                     ")
-	print("  C oo   ---------------    ")
- 	print(" _( ^)  |T|A|K|E|O|V|E|R|   ")
-	print("/   ~\\  ----------------   ")
-	print("#> by Momo Outaadi (m4ll0k) ")
-	print("#> http://github.com/m4ll0k ")
+	print("\n   /~\\")
+	print("  C oo   ---------------")
+ 	print(" _( ^)  |T|A|K|E|O|V|E|R|")
+	print("/   ~\\  ----------------")
+	print("#> by Momo Outaadi (m4ll0k)")
+	print("#> http://github.com/m4ll0k")
 	print("-"*40)
 
 def help():
