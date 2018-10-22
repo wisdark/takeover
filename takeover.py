@@ -34,7 +34,6 @@ services = {
 	'Pantheon'        : {'code':'[300-499]','error':r'The gods are wise, but do not know of the site which you seek.'},
 	'Tumbler'         : {'code':'[300-499]','error':r'Whatever you were looking for doesn\'t currently exist at this address.'},
 	'Wordpress'       : {'code':'[300-499]','error':r'Do you want to register'},
-	'Desk'            : {'code':'[300-499]','error':r'Sorry, We Couldn\'t Find That Page'},
 	'ZenDesk'         : {'code':'[300-499]','error':r'Help Center Closed'},
 
 	'TeamWork'        : {'code':'[300-499]','error':r'Oops - We didn\'t find your site.'},
@@ -69,7 +68,6 @@ services = {
 	'Jetbrains'       : {'code':'[300-499]','error':r'is not a registered InCloud YouTrack.'},
 	
 	'Unbounce'        : {'code':'[300-499]','error':r'The requested URL / was not found on this server|The requested URL was not found on this server'},
-	'Tictail'         : {'code':'[300-499]','error':r'Building a brand of your own\?|to target URL: \<a href\=\\\"https://tictail.com|Start selling on Tictail.'},
 	'Smartling'       : {'code':'[300-499]','error':r'Domain is not configured'},
 	'Pingdom'         : {'code':'[300-499]','error':r'pingdom'},
 	'Tilda'           : {'code':'[300-499]','error':r'Domain has been assigned'},
