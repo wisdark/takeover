@@ -11,7 +11,7 @@ import sys
 import time
 import getopt
 import urllib3
-import urlparse
+import urllib.parse
 import requests
 
 # -- common services
@@ -125,7 +125,7 @@ def checker(status,content):
 def banner():
 	print("\n   /~\\")
 	print("  C oo   ---------------")
- 	print(" _( ^)  |T|A|K|E|O|V|E|R|")
+	print(" _( ^)  |T|A|K|E|O|V|E|R|")
 	print("/   ~\\  ----------------")
 	print("#> by Momo Outaadi (m4ll0k)")
 	print("#> http://github.com/m4ll0k")

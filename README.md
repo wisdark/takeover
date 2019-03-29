@@ -68,6 +68,11 @@ __or:__
 ```
 wget -q https://raw.githubusercontent.com/m4ll0k/takeover/master/takeover.py && python takeover.py
 ```
+__or:__
+
+```
+pip install git+https://github.com/m4ll0k/takeover.git
+```
 
 ## Usage
 
