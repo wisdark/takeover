@@ -41,7 +41,7 @@ services = {
 	'Helpscout'       : {'code':'[300-499]','error':r'No settings were found for this company:'},
 	'S3Bucket'        : {'code':'[300-499]','error':r'The specified bucket does not exist'},
 	'Cargo'           : {'code':'[300-499]','error':r'<title>404 &mdash; File not found</title>'},
-	'StatuPage'       : {'code':'[300-499]','error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
+	'StatusPage'      : {'code':'[300-499]','error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
 	'Uservoice'       : {'code':'[300-499]','error':r'This UserVoice subdomain is currently available!'},
 	'Surge'           : {'code':'[300-499]','error':r'project not found'},
 	'Intercom'        : {'code':'[300-499]','error':r'This page is reserved for artistic dogs\.|Uh oh\. That page doesn\'t exist</h1>'},
