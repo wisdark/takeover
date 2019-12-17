@@ -11,7 +11,7 @@ import sys
 import time
 import getopt
 import urllib3
-import urlparse
+import urllib.parse
 import requests
 
 # -- common services
@@ -41,7 +41,7 @@ services = {
 	'Helpscout'       : {'code':'[300-499]','error':r'No settings were found for this company:'},
 	'S3Bucket'        : {'code':'[300-499]','error':r'The specified bucket does not exist'},
 	'Cargo'           : {'code':'[300-499]','error':r'<title>404 &mdash; File not found</title>'},
-	'StatuPage'       : {'code':'[300-499]','error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
+	'StatusPage'      : {'code':'[300-499]','error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
 	'Uservoice'       : {'code':'[300-499]','error':r'This UserVoice subdomain is currently available!'},
 	'Surge'           : {'code':'[300-499]','error':r'project not found'},
 	'Intercom'        : {'code':'[300-499]','error':r'This page is reserved for artistic dogs\.|Uh oh\. That page doesn\'t exist</h1>'},
@@ -125,7 +125,7 @@ def checker(status,content):
 def banner():
 	print("\n   /~\\")
 	print("  C oo   ---------------")
- 	print(" _( ^)  |T|A|K|E|O|V|E|R|")
+	print(" _( ^)  |T|A|K|E|O|V|E|R|")
 	print("/   ~\\  ----------------")
 	print("#> by Momo Outaadi (m4ll0k)")
 	print("#> http://github.com/m4ll0k")
