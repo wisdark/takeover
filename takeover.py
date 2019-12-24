@@ -164,13 +164,13 @@ def check_path(path):
 def readfile(path):
 	info('Read wordlist.. %s'%(path))
 	try:
-		return [l.strip() for l in open(check_path(path),'rb')]
+		return [l.strip() for l in open(check_path(path),'r')]
 	except Exception as e:
 		warn('%s'%e)
 		sys.exit()
 
 def check_url(url):
-	o = urlparse.urlsplit(url)
+	o = urllib.parse.urlsplit(url)
 	if o.scheme not in ['http','https','']:
 		warn('Scheme %s not supported!!'%(o.scheme))
 		sys.exit()
@@ -206,7 +206,7 @@ def main():
 		if o in ('-t','--set-timeout'):set_timeout = int(a)
 	# ---
 	if set_output:
-		file = open(set_output,"wb")
+		file = open(set_output,"w+")
 		file.write('Output File\r\n%s\r\n'%("-"*50))
 	if sub_domain:
 		plus('Starting scanning...')
