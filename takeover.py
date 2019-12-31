@@ -67,7 +67,6 @@ services = {
 	'Vend'            : {'code':'[300-499]','error':r'Looks like you\'ve traveled too far into cyberspace.'},
 	'Jetbrains'       : {'code':'[300-499]','error':r'is not a registered InCloud YouTrack.'},
 	
-	'Unbounce'        : {'code':'[300-499]','error':r'The requested URL / was not found on this server|The requested URL was not found on this server'},
 	'Smartling'       : {'code':'[300-499]','error':r'Domain is not configured'},
 	'Pingdom'         : {'code':'[300-499]','error':r'pingdom'},
 	'Tilda'           : {'code':'[300-499]','error':r'Domain has been assigned'},
@@ -164,13 +163,13 @@ def check_path(path):
 def readfile(path):
 	info('Read wordlist.. %s'%(path))
 	try:
-		return [l.strip() for l in open(check_path(path),'rb')]
+		return [l.strip() for l in open(check_path(path),'r')]
 	except Exception as e:
 		warn('%s'%e)
 		sys.exit()
 
 def check_url(url):
-	o = urlparse.urlsplit(url)
+	o = urllib.parse.urlsplit(url)
 	if o.scheme not in ['http','https','']:
 		warn('Scheme %s not supported!!'%(o.scheme))
 		sys.exit()
@@ -206,7 +205,7 @@ def main():
 		if o in ('-t','--set-timeout'):set_timeout = int(a)
 	# ---
 	if set_output:
-		file = open(set_output,"wb")
+		file = open(set_output,"w+")
 		file.write('Output File\r\n%s\r\n'%("-"*50))
 	if sub_domain:
 		plus('Starting scanning...')
@@ -224,6 +223,8 @@ def main():
 			status,content = request(sub_domain,set_proxy,set_timeout)
 			service,error = checker(status,content)
 			if service and error:
+				plus('Found service: %s'%service)
+				plus('A potential TAKEOVER vulnerability found!')
 				if set_output:
 					file.write('HOST    : %s\r\n'%(sub_domain))
 					file.write('SERVICE : %s\r\n'%(service))

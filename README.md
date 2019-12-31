@@ -1,5 +1,3 @@
-[h](http://www.google.com%E5%98%8A%E5%98%8DSet-cookie:%20test=1)
-
 # TakeOver - Subdomain Takeover Finder
 
 ![screen](https://raw.githubusercontent.com/m4ll0k/takeover/master/screen.png)
