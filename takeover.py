@@ -22,10 +22,8 @@ import requests
 services = {
 	'AWS/S3'          : {'code':'[300-499]','error':r'The specified bucket does not exit'},
 	'BitBucket'       : {'code':'[300-499]','error':r'Repository not found'},
-	'CloudFront'      : {'code':'[300-499]','error':r'ERROR\: The request could not be satisfied'},
 	'Github'          : {'code':'[300-499]','error':r'There isn\'t a Github Pages site here\.'},
 	'Shopify'         : {'code':'[300-499]','error':r'Sorry\, this shop is currently unavailable\.'},
-	'Desk'            : {'code':'[300-499]','error':r'Sorry\, We Couldn\'t Find That Page'},
 	'Fastly'          : {'code':'[300-499]','error':r'Fastly error\: unknown domain\:'},
 
 	'FeedPress'       : {'code':'[300-499]','error':r'The feed has not been found\.'},
@@ -34,12 +32,10 @@ services = {
 	'Pantheon'        : {'code':'[300-499]','error':r'The gods are wise, but do not know of the site which you seek.'},
 	'Tumbler'         : {'code':'[300-499]','error':r'Whatever you were looking for doesn\'t currently exist at this address.'},
 	'Wordpress'       : {'code':'[300-499]','error':r'Do you want to register'},
-	'ZenDesk'         : {'code':'[300-499]','error':r'Help Center Closed'},
 
 	'TeamWork'        : {'code':'[300-499]','error':r'Oops - We didn\'t find your site.'},
 	'Helpjuice'       : {'code':'[300-499]','error':r'We could not find what you\'re looking for.'},
 	'Helpscout'       : {'code':'[300-499]','error':r'No settings were found for this company:'},
-	'S3Bucket'        : {'code':'[300-499]','error':r'The specified bucket does not exist'},
 	'Cargo'           : {'code':'[300-499]','error':r'<title>404 &mdash; File not found</title>'},
 	'StatusPage'      : {'code':'[300-499]','error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
 	'Uservoice'       : {'code':'[300-499]','error':r'This UserVoice subdomain is currently available!'},
