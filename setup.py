@@ -12,7 +12,7 @@ setup(name='takeover',
           'requests',
           'urllib3',
       ],
-      entry_points = {
-        'console_scripts': ['takeover=takeover:main'],
+      entry_points={
+          'console_scripts': ['takeover=takeover:main'],
       },
       zip_safe=False)
