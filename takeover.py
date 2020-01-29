@@ -20,7 +20,7 @@ import requests
 # -- https://github.com/EdOverflow/can-i-take-over-xyz
 
 services = {
-        'AWS/S3'          : {'code':'[300-499]','error':r'The specified bucket does not exit'},
+        'AWS/S3'          : {'code':'[300-499]','error':r'The specified bucket does not exist'},
         'BitBucket'       : {'code':'[300-499]','error':r'Repository not found'},
         'Github'          : {'code':'[300-499]','error':r'There isn\'t a Github Pages site here\.'},
         'Shopify'         : {'code':'[300-499]','error':r'Sorry\, this shop is currently unavailable\.'},
