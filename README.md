@@ -1,4 +1,4 @@
-# Takeover - Subdomain Takeover Finder
+# Takeover - Subdomain Takeover Finder v0.2
 
 ![screen](https://i.imgur.com/rggaoj8.png)
 
