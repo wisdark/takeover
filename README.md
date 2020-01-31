@@ -63,27 +63,28 @@ Sub-domain takeover vulnerability occur when a sub-domain (**subdomain.example.c
 ```shell
 git clone https://github.com/m4ll0k/takeover.git
 cd takeover
-python takeover.py
+python3 takeover.py
 ```
 
 **or:**
 
 ```
-wget -q https://raw.githubusercontent.com/m4ll0k/takeover/master/takeover.py && python takeover.py
+wget -q https://raw.githubusercontent.com/m4ll0k/takeover/master/takeover.py && python3 takeover.py
 ```
 
 **or:**
 
 ```
-pip install https://github.com/m4ll0k/takeover.git
+pip3 install https://github.com/m4ll0k/takeover.git
 ```
 
 ## Usage
 
 ```
-$ python takeover.py --sub-domain site.site.com
-$ python takeover.py --sub-domain site.site.com --set-proxy xxx.xxx.xxx.xxx
-$ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt
-$ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt --set-proxt xxx.xxx.xxx.xxx
-$ python takeover.py --sub-domain-list sub.txt --set-output sub_out.txt --set-timeout 3
+$ python3 takeover.py -d www.domain.com -v 
+$ python3 takeover.py -d www.domain.com -v -t 30
+$ python3 takeover.py -d www.domain.com -p http://127.0.0.1:8080 -v 
+$ python3 takeover.py -d www.domain.com -o <output.txt> or <output.json> -v 
+$ python3 takeover.py -l uber-sub-domains.txt -o output.txt -p http://xxx.xxx.xxx.xxx:8080 -v 
+$ python3 takeover.py -d uber-sub-domains.txt -o output.txt -T 3 -v 
 ```
