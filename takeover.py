@@ -277,9 +277,9 @@ def main():
                     savejson(k.get('output'),_output,k.get('verbose'))
                 else:
                     warn('Output Error: %s extension not supported, only .txt or .json'%k.get('output').split('.')[1],1)
+            info('Done!')
         elif k.get('domain') is None and k.get('d_list') is None:
                 help(1)
-        else:
-                info('Done!')
         
-main()
+if __name__ == '__main__':
+    main()
