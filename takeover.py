@@ -254,7 +254,7 @@ def main():
                 if o == '-l': k['d_list'] = a  
                 if o == '-p': k['proxy'] = a 
                 if o == '-o': k['output'] = a 
-                if o == '-T': k['timeout'] = a 
+                if o == '-T': k['timeout'] = int(a)
                 if o == '-k': k['process'] = True
                 if o == '-v': k['verbose'] = True
 
