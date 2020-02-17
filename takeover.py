@@ -113,7 +113,7 @@ def request(domain,proxy,timeout):
 				headers = headers,
 				verify = False,
 				allow_redirects = redirect,
-				timeout = int(timeout),
+				timeout = int(timeout) if timeout != None else None,
 				proxies = proxies
 				)
                 return req.status_code,req.content
