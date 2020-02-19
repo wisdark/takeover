@@ -26,6 +26,9 @@ e ='\033[0m'
 global _output
 _output = []
 
+# index/lenght * 100
+PERCENT = lambda x,y: float(x)/float(y) * 100
+
 services = {
         'AWS/S3'          : {'error':r'The specified bucket does not exist'},
         'BitBucket'       : {'error':r'Repository not found'},
@@ -88,6 +91,9 @@ def warn(string,exit=not 1):
 
 def info(string):
 	print('{0}[ i ]{1} {2}'.format(y,e,string))
+
+def _info():
+    return '{0}[ i ]{1} '.format(y,e)
 
 def err(string):
     print(r'  |= [REGEX]: {0}{1}{2}'.format(y_,string,e))
@@ -174,6 +180,12 @@ def checkurl(url):
         else:
                 return 'http://' + o.netloc 
 
+def print_(string):
+    sys.stdout.write('\033[1K')
+    sys.stdout.write('\033[0G')
+    sys.stdout.write(string)
+    sys.stdout.flush()
+
 def runner(k):
         threadpool = thread.ThreadPoolExecutor(max_workers=k.get('threads'))
         if k.get('verbose'):
@@ -181,8 +193,15 @@ def runner(k):
         futures = (threadpool.submit(requester,domain,k.get("proxy"),k.get("timeout"),
                 k.get("output"),k.get('process'),k.get('verbose')) for domain in k.get("domains"))
         for i,results in enumerate(thread.as_completed(futures)):
-            if k.get('verbose'):
-                info('Domain: '+k.get('domains')[i])
+            if k.get('verbose') and k.get('d_list'):
+                str_ = "{i}{b:.2f}% Domain: {d}".format(
+                    i=_info(),
+                    b=PERCENT(int(i),
+                        int(k.get('dict_len'))),d=k.get('domains')[i]
+                    )
+                print_(str_)
+            else:
+                info('Domain: {}'.format(k.get('domains')[i]))
             pass
 
 def requester(domain,proxy,timeout,output,ok,v):
@@ -238,7 +257,8 @@ def main():
               'output'  : None,
               'timeout' : None,
               'process' : False,
-              'verbose' : False 
+              'verbose' : False,
+              'dict_len': 0 
          }
         if len(sys.argv) < 2:
                 help(1)
@@ -269,6 +289,7 @@ def main():
             else: 
                 domains.append(k.get("domain"))
             k['domains'] = domains
+            k['dict_len'] = len(domains)
             runner(k)
             if k.get("output"):
                 if '.txt' in k.get('output'):
@@ -277,9 +298,11 @@ def main():
                     savejson(k.get('output'),_output,k.get('verbose'))
                 else:
                     warn('Output Error: %s extension not supported, only .txt or .json'%k.get('output').split('.')[1],1)
-            info('Done!')
         elif k.get('domain') is None and k.get('d_list') is None:
                 help(1)
         
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except (KeyboardInterrupt) as e:
+        sys.exit(0)
