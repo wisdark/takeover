@@ -25,6 +25,18 @@ e ='\033[0m'
 
 global _output
 _output = []
+global k_
+k_ = {
+    'domain'  : None,
+    'threads' : 1,
+    'd_list'  : None,
+    'proxy'   : None,
+    'output'  : None,
+    'timeout' : None,
+    'process' : False,
+    'verbose' : False,
+    'dict_len': 0 
+}
 
 # index/lenght * 100
 PERCENT = lambda x,y: float(x)/float(y) * 100
@@ -124,7 +136,11 @@ def request(domain,proxy,timeout):
 				)
                 return req.status_code,req.content
         except Exception as err:
-            warn(err,1)
+            if k_.get('d_list'):
+                print("")
+                warn(err,1)
+            else:
+                warn(err,1)
 
 def find(status,content,ok):
         for service in services:
@@ -210,16 +226,26 @@ def requester(domain,proxy,timeout,output,ok,v):
         if service and error:
                 if output:
                     _output.append((domain,service,error))
-                    if v:
+                    if v and not k_.get('d_list'):
+                        plus('%s service found! Potential domain takeover found!'%(service))
+                    elif v and k_.get('d_list'):
+                        print("")
                         plus('%s service found! Potential domain takeover found!'%(service))
                 else:
-                    plus('%s service found! Potential domain takeover found!'%(service))
+                    if k_.get('d_list'):
+                        print("")
+                        plus('%s service found! Potential domain takeover found!'%(service))
+                    elif not k_.get('d_list'):
+                        plus('%s service found! Potential domain takeover found!'%(service))
                     if v:
                         err(error)
 
 def savejson(path,content,v):
-    if v:
+    if v and not k_.get('d_list'):
         info('Writing file..')
+    elif v and k_.get('d_list'):
+        print("")
+        info("Writing file..")
     a = {}
     b = {"domains":{}}
     for i in content:
@@ -231,8 +257,11 @@ def savejson(path,content,v):
     info('Saved at '+path+'..')
 
 def savetxt(path,content,v):
-    if v:
+    if v and not k_.get('d_list'):
         info('Writing file..')
+    elif v and k_.get('d_list'):
+        print("")
+        info("Writing file..")
     br = '-'*40
     bf = '='*40
     out = ''+br+'\n'
@@ -249,17 +278,6 @@ def savetxt(path,content,v):
 
 def main(): 
         # -- 
-        k = {
-              'domain'  : None,
-              'threads' : 1,
-              'd_list'  : None,
-              'proxy'   : None,
-              'output'  : None,
-              'timeout' : None,
-              'process' : False,
-              'verbose' : False,
-              'dict_len': 0 
-         }
         if len(sys.argv) < 2:
                 help(1)
         try:
@@ -269,36 +287,36 @@ def main():
         except Exception as e:
                 warn(e,1)
         for o,a in opts:
-                if o == '-d': k['domain'] = a 
-                if o == '-t': k['threads'] = int(a)
-                if o == '-l': k['d_list'] = a  
-                if o == '-p': k['proxy'] = a 
-                if o == '-o': k['output'] = a 
-                if o == '-T': k['timeout'] = int(a)
-                if o == '-k': k['process'] = True
-                if o == '-v': k['verbose'] = True
+                if o == '-d': k_['domain'] = a 
+                if o == '-t': k_['threads'] = int(a)
+                if o == '-l': k_['d_list'] = a  
+                if o == '-p': k_['proxy'] = a 
+                if o == '-o': k_['output'] = a 
+                if o == '-T': k_['timeout'] = int(a)
+                if o == '-k': k_['process'] = True
+                if o == '-v': k_['verbose'] = True
 
-        if k.get("domain") or k.get("d_list"):
+        if k_.get("domain") or k_.get("d_list"):
             banner()
             domains = []
-            if k.get('verbose'):
+            if k_.get('verbose'):
                 info('Starting..')
             
-            if k.get("d_list"):
-                domains.extend(readfile(k.get("d_list")))
+            if k_.get("d_list"):
+                domains.extend(readfile(k_.get("d_list")))
             else: 
-                domains.append(k.get("domain"))
-            k['domains'] = domains
-            k['dict_len'] = len(domains)
-            runner(k)
-            if k.get("output"):
-                if '.txt' in k.get('output'):
-                    savetxt(k.get('output'),_output,k.get('verbose'))
-                elif '.json' in k.get('output'):
-                    savejson(k.get('output'),_output,k.get('verbose'))
+                domains.append(k_.get("domain"))
+            k_['domains'] = domains
+            k_['dict_len'] = len(domains)
+            runner(k_)
+            if k_.get("output"):
+                if '.txt' in k_.get('output'):
+                    savetxt(k_.get('output'),_output,k_.get('verbose'))
+                elif '.json' in k_.get('output'):
+                    savejson(k_.get('output'),_output,k_.get('verbose'))
                 else:
-                    warn('Output Error: %s extension not supported, only .txt or .json'%k.get('output').split('.')[1],1)
-        elif k.get('domain') is None and k.get('d_list') is None:
+                    warn('Output Error: %s extension not supported, only .txt or .json'%k_.get('output').split('.')[1],1)
+        elif k_.get('domain') is None and k_.get('d_list') is None:
                 help(1)
         
 if __name__ == '__main__':
