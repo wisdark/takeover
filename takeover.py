@@ -138,9 +138,9 @@ def request(domain,proxy,timeout):
         except Exception as err:
             if k_.get('d_list'):
                 print("")
-                warn(err,1)
+                warn('Failed to establish a new connection!!',1)
             else:
-                warn(err,1)
+                warn('Failed to establish a new connection!!',1)
 
 def find(status,content,ok):
         for service in services:
