@@ -138,9 +138,9 @@ def request(domain,proxy,timeout):
         except Exception as err:
             if k_.get('d_list'):
                 print("")
-                warn('Failed to establish a new connection!!',1)
+                warn('Failed to establish a new connection for: %s'%(domain),1)
             else:
-                warn('Failed to establish a new connection!!',1)
+                warn('Failed to establish a new connection for: %s'%(domain),1)
 
 def find(status,content,ok):
         for service in services:
@@ -227,16 +227,16 @@ def requester(domain,proxy,timeout,output,ok,v):
                 if output:
                     _output.append((domain,service,error))
                     if v and not k_.get('d_list'):
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     elif v and k_.get('d_list'):
                         print("")
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                 else:
                     if k_.get('d_list'):
                         print("")
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     elif not k_.get('d_list'):
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     if v:
                         err(error)
 
