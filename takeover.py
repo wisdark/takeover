@@ -90,6 +90,7 @@ services = {
         'Tilda'           : {'error':r'Domain has been assigned'},
         'Surveygizmo'     : {'error':r'data-html-name'},
         'Mashery'         : {'error':r'Unrecognized domain <strong>'},
+	'Divio'           : {'error':r'Application not responding'},
 }
 
 
