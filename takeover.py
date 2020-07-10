@@ -44,7 +44,7 @@ PERCENT = lambda x,y: float(x)/float(y) * 100
 services = {
         'AWS/S3'          : {'error':r'The specified bucket does not exist'},
         'BitBucket'       : {'error':r'Repository not found'},
-        'Github'          : {'error':r'There isn\'t a Github Pages site here\.'},
+        'Github'          : {'error':r'There isn\\\'t a Github Pages site here\.'},
         'Shopify'         : {'error':r'Sorry\, this shop is currently unavailable\.'},
         'Fastly'          : {'error':r'Fastly error\: unknown domain\:'},
 
@@ -52,7 +52,7 @@ services = {
         'Ghost'           : {'error':r'The thing you were looking for is no longer here\, or never was'},
         'Heroku'          : {'error':r'no-such-app.html|<title>no such app</title>|herokucdn.com/error-pages/no-such-app.html'},
         'Pantheon'        : {'error':r'The gods are wise, but do not know of the site which you seek.'},
-        'Tumbler'         : {'error':r'Whatever you were looking for doesn\'t currently exist at this address.'},
+        'Tumbler'         : {'error':r'Whatever you were looking for doesn\\\'t currently exist at this address.'},
         'Wordpress'       : {'error':r'Do you want to register'},
 
         'TeamWork'        : {'error':r'Oops - We didn\'t find your site.'},
