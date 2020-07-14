@@ -184,7 +184,7 @@ def checkpath(path):
 
 def readfile(path):
         info('Read wordlist.. "%s"'%path)
-        return [x.strip() for x in open(checkpath(path),'r+')]
+        return [x.strip() for x in open(checkpath(path),'r')]
 
 def checkurl(url):
         o = urllib.parse.urlsplit(url)
