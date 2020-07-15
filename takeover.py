@@ -44,7 +44,7 @@ PERCENT = lambda x,y: float(x)/float(y) * 100
 services = {
         'AWS/S3'          : {'error':r'The specified bucket does not exist'},
         'BitBucket'       : {'error':r'Repository not found'},
-        'Github'          : {'error':r'There isn\'t a Github Pages site here\.'},
+        'Github'          : {'error':r'There isn\\\'t a Github Pages site here\.'},
         'Shopify'         : {'error':r'Sorry\, this shop is currently unavailable\.'},
         'Fastly'          : {'error':r'Fastly error\: unknown domain\:'},
 
@@ -52,7 +52,7 @@ services = {
         'Ghost'           : {'error':r'The thing you were looking for is no longer here\, or never was'},
         'Heroku'          : {'error':r'no-such-app.html|<title>no such app</title>|herokucdn.com/error-pages/no-such-app.html'},
         'Pantheon'        : {'error':r'The gods are wise, but do not know of the site which you seek.'},
-        'Tumbler'         : {'error':r'Whatever you were looking for doesn\'t currently exist at this address.'},
+        'Tumbler'         : {'error':r'Whatever you were looking for doesn\\\'t currently exist at this address.'},
         'Wordpress'       : {'error':r'Do you want to register'},
 
         'TeamWork'        : {'error':r'Oops - We didn\'t find your site.'},
@@ -90,6 +90,7 @@ services = {
         'Tilda'           : {'error':r'Domain has been assigned'},
         'Surveygizmo'     : {'error':r'data-html-name'},
         'Mashery'         : {'error':r'Unrecognized domain <strong>'},
+	'Divio'           : {'error':r'Application not responding'},
 }
 
 
@@ -138,9 +139,9 @@ def request(domain,proxy,timeout):
         except Exception as err:
             if k_.get('d_list'):
                 print("")
-                warn(err,1)
+                warn('Failed to establish a new connection for: %s'%(domain),1)
             else:
-                warn(err,1)
+                warn('Failed to establish a new connection for: %s'%(domain),1)
 
 def find(status,content,ok):
         for service in services:
@@ -183,7 +184,7 @@ def checkpath(path):
 
 def readfile(path):
         info('Read wordlist.. "%s"'%path)
-        return [x.strip() for x in open(checkpath(path),'r+')]
+        return [x.strip() for x in open(checkpath(path),'r')]
 
 def checkurl(url):
         o = urllib.parse.urlsplit(url)
@@ -227,16 +228,16 @@ def requester(domain,proxy,timeout,output,ok,v):
                 if output:
                     _output.append((domain,service,error))
                     if v and not k_.get('d_list'):
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     elif v and k_.get('d_list'):
                         print("")
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                 else:
                     if k_.get('d_list'):
                         print("")
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     elif not k_.get('d_list'):
-                        plus('%s service found! Potential domain takeover found!'%(service))
+                        plus('%s service found! Potential domain takeover found! - %s'%(service,domain))
                     if v:
                         err(error)
 
