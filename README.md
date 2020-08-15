@@ -51,7 +51,6 @@ Sub-domain takeover vulnerability occur when a sub-domain (**subdomain.example.c
 'Vend'
 'Jetbrains'
 'Unbounce'
-'Tictail'
 'Smartling'
 'Pingdom'
 'Tilda'
