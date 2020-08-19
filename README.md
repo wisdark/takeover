@@ -82,3 +82,18 @@ $ python3 takeover.py -d www.domain.com -o <output.txt> or <output.json> -v
 $ python3 takeover.py -l uber-sub-domains.txt -o output.txt -p http://xxx.xxx.xxx.xxx:8080 -v 
 $ python3 takeover.py -d uber-sub-domains.txt -o output.txt -T 3 -v 
 ```
+
+## Docker support
+
+Build the image:
+
+```
+docker build -t takeover .
+```
+
+Run the container:
+
+```
+docker run -it --rm takeover -d www.domain.com -v
+```
+
