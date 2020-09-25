@@ -48,7 +48,6 @@ services = {
         'Shopify'         : {'error':r'Sorry\, this shop is currently unavailable\.'},
         'Fastly'          : {'error':r'Fastly error\: unknown domain\:'},
 
-        'FeedPress'       : {'error':r'The feed has not been found\.'},
         'Ghost'           : {'error':r'The thing you were looking for is no longer here\, or never was'},
         'Heroku'          : {'error':r'no-such-app.html|<title>no such app</title>|herokucdn.com/error-pages/no-such-app.html'},
         'Pantheon'        : {'error':r'The gods are wise, but do not know of the site which you seek.'},
@@ -59,7 +58,6 @@ services = {
         'Helpjuice'       : {'error':r'We could not find what you\'re looking for.'},
         'Helpscout'       : {'error':r'No settings were found for this company:'},
         'Cargo'           : {'error':r'<title>404 &mdash; File not found</title>'},
-        'StatusPage'      : {'error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
         'Uservoice'       : {'error':r'This UserVoice subdomain is currently available!'},
         'Surge'           : {'error':r'project not found'},
         'Intercom'        : {'error':r'This page is reserved for artistic dogs\.|Uh oh\. That page doesn\'t exist</h1>'},
