@@ -55,9 +55,13 @@ Sub-domain takeover vulnerability occur when a sub-domain (**subdomain.example.c
 'Wishpond'
 'Wordpress'
 'ZenDesk'
-
+'feedpress'
+'readme'
+'statuspage'
+'zendesk'   
+'worksites.net'                                    
+'smugmug'
 ```
-
 ## Installation:
 
 ```shell
