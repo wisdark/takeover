@@ -91,7 +91,7 @@ services = {
         'Divio'           : {'error':r'Application not responding'},
         'feedpress'       : {'error':r'The feed has not been found.'},
         'readme'          : {'error':r'Project doesnt exist... yet!'},   
-        'statuspage'      : {'error':r'You are being <a href=\'https>'}
+        'statuspage'      : {'error':r'You are being <a href=\'https>'},
         'zendesk'         : {'error':r'Help Center Closed'},
         'worksites.net'   : {'error':r'Hello! Sorry, but the webs>'}
 }
