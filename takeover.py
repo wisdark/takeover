@@ -89,10 +89,11 @@ services = {
         'Surveygizmo'     : {'error':r'data-html-name'},
         'Mashery'         : {'error':r'Unrecognized domain <strong>'},
 	'Divio'           : {'error':r'Application not responding'},
-        'feedpress'       : {'error':'The feed has not been found.'},'readme':{'error':'Project doesnt exist... yet!'},   'statuspage':{'error':'You are being <a href=\'https>
+        'feedpress'       : {'error':'The feed has not been found.'},
+	'readme'          : {'error':'Project doesnt exist... yet!'},   
+	'statuspage'.     : {'error':'You are being <a href=\'https>'},
         'zendesk'         : {'error':'Help Center Closed'},
-        'worksites.net'   : {'error':'Hello! Sorry, but the webs>
-        'smugmug'         : {'error':''},
+        'worksites.net'   : {'error':'Hello! Sorry, but the webs>'}
 }
 def plus(string):
 	print('{0}[ + ]{1} {2}'.format(g,e,string))
