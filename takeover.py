@@ -88,23 +88,23 @@ services = {
         'Tilda'           : {'error':r'Domain has been assigned'},
         'Surveygizmo'     : {'error':r'data-html-name'},
         'Mashery'         : {'error':r'Unrecognized domain <strong>'},
-	'Divio'           : {'error':r'Application not responding'},
-        'feedpress'       : {'error':'The feed has not been found.'},
-	'readme'          : {'error':'Project doesnt exist... yet!'},   
-	'statuspage'.     : {'error':'You are being <a href=\'https>'},
-        'zendesk'         : {'error':'Help Center Closed'},
-        'worksites.net'   : {'error':'Hello! Sorry, but the webs>'}
+        'Divio'           : {'error':r'Application not responding'},
+        'feedpress'       : {'error':r'The feed has not been found.'},
+        'readme'          : {'error':r'Project doesnt exist... yet!'},   
+        'statuspage'      : {'error':r'You are being <a href=\'https>'}
+        'zendesk'         : {'error':r'Help Center Closed'},
+        'worksites.net'   : {'error':r'Hello! Sorry, but the webs>'}
 }
 def plus(string):
-	print('{0}[ + ]{1} {2}'.format(g,e,string))
+    print('{0}[ + ]{1} {2}'.format(g,e,string))
 
 def warn(string,exit=not 1):
-	print('{0}[ ! ]{1} {2}'.format(r,e,string))
-	if exit:
-		sys.exit()
+    print('{0}[ ! ]{1} {2}'.format(r,e,string))
+    if exit:
+        sys.exit()
 
 def info(string):
-	print('{0}[ i ]{1} {2}'.format(y,e,string))
+    print('{0}[ i ]{1} {2}'.format(y,e,string))
 
 def _info():
     return '{0}[ i ]{1} '.format(y,e)
@@ -126,16 +126,16 @@ def request(domain,proxy,timeout):
         redirect = True
         try:
                 req = requests.packages.urllib3.disable_warnings(
-			urllib3.exceptions.InsecureRequestWarning
-			)
+            urllib3.exceptions.InsecureRequestWarning
+            )
                 req = requests.get(
-				url = url,
-				headers = headers,
-				verify = False,
-				allow_redirects = redirect,
-				timeout = int(timeout) if timeout != None else None,
-				proxies = proxies
-				)
+                url = url,
+                headers = headers,
+                verify = False,
+                allow_redirects = redirect,
+                timeout = int(timeout) if timeout != None else None,
+                proxies = proxies
+                )
                 return req.status_code,req.content
         except Exception as err:
             if k_.get('d_list'):
