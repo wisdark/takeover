@@ -170,7 +170,7 @@ def help(_exit_=False):
         print("\t-o\tUse this settings for save a file, args=json or text")
         print("\t-T\tSet a request timeout,default value is 20 seconds")
         print("\t-k\tProcess 200 http code, cause more false positive")
-        print("\t-u\tSet custom user agent URL (e.g: takeover-bot)")
+        print("\t-u\tSet custom user agent (e.g: takeover-bot)")
         print("\t-v\tVerbose, print more info\n")
         if _exit_:
                 sys.exit()
