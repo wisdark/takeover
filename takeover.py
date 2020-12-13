@@ -27,15 +27,16 @@ global _output
 _output = []
 global k_
 k_ = {
-    'domain'  : None,
-    'threads' : 1,
-    'd_list'  : None,
-    'proxy'   : None,
-    'output'  : None,
-    'timeout' : None,
-    'process' : False,
-    'verbose' : False,
-    'dict_len': 0 
+    'domain'     : None,
+    'threads'    : 1,
+    'd_list'     : None,
+    'proxy'      : None,
+    'output'     : None,
+    'timeout'    : None,
+    'process'    : False,
+    'user_agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.36 Safari/537.36',
+    'verbose'    : False,
+    'dict_len'   : 0 
 }
 
 # index/lenght * 100
@@ -48,7 +49,6 @@ services = {
         'Shopify'         : {'error':r'Sorry\, this shop is currently unavailable\.'},
         'Fastly'          : {'error':r'Fastly error\: unknown domain\:'},
 
-        'FeedPress'       : {'error':r'The feed has not been found\.'},
         'Ghost'           : {'error':r'The thing you were looking for is no longer here\, or never was'},
         'Heroku'          : {'error':r'no-such-app.html|<title>no such app</title>|herokucdn.com/error-pages/no-such-app.html'},
         'Pantheon'        : {'error':r'The gods are wise, but do not know of the site which you seek.'},
@@ -59,7 +59,6 @@ services = {
         'Helpjuice'       : {'error':r'We could not find what you\'re looking for.'},
         'Helpscout'       : {'error':r'No settings were found for this company:'},
         'Cargo'           : {'error':r'<title>404 &mdash; File not found</title>'},
-        'StatusPage'      : {'error':r'You are being <a href=\"https://www.statuspage.io\">redirected'},
         'Uservoice'       : {'error':r'This UserVoice subdomain is currently available!'},
         'Surge'           : {'error':r'project not found'},
         'Intercom'        : {'error':r'This page is reserved for artistic dogs\.|Uh oh\. That page doesn\'t exist</h1>'},
@@ -90,20 +89,23 @@ services = {
         'Tilda'           : {'error':r'Domain has been assigned'},
         'Surveygizmo'     : {'error':r'data-html-name'},
         'Mashery'         : {'error':r'Unrecognized domain <strong>'},
-	'Divio'           : {'error':r'Application not responding'},
+        'Divio'           : {'error':r'Application not responding'},
+        'feedpress'       : {'error':r'The feed has not been found.'},
+        'readme'          : {'error':r'Project doesnt exist... yet!'},   
+        'statuspage'      : {'error':r'You are being <a href=\'https>'},
+        'zendesk'         : {'error':r'Help Center Closed'},
+        'worksites.net'   : {'error':r'Hello! Sorry, but the webs>'}
 }
-
-
 def plus(string):
-	print('{0}[ + ]{1} {2}'.format(g,e,string))
+    print('{0}[ + ]{1} {2}'.format(g,e,string))
 
 def warn(string,exit=not 1):
-	print('{0}[ ! ]{1} {2}'.format(r,e,string))
-	if exit:
-		sys.exit()
+    print('{0}[ ! ]{1} {2}'.format(r,e,string))
+    if exit:
+        sys.exit()
 
 def info(string):
-	print('{0}[ i ]{1} {2}'.format(y,e,string))
+    print('{0}[ i ]{1} {2}'.format(y,e,string))
 
 def _info():
     return '{0}[ i ]{1} '.format(y,e)
@@ -112,10 +114,7 @@ def err(string):
     print(r'  |= [REGEX]: {0}{1}{2}'.format(y_,string,e))
 
 
-def request(domain,proxy,timeout):
-        headers = {
-             'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.36 Safari/537.36'
-        }
+def request(domain,proxy,timeout,user_agent):
         url = checkurl(domain)
         timeout = timeout
         proxies = {
@@ -123,18 +122,21 @@ def request(domain,proxy,timeout):
         'https' : proxy
         }
         redirect = True
+        headers = {
+            'User-Agent': user_agent
+        }
         try:
                 req = requests.packages.urllib3.disable_warnings(
-			urllib3.exceptions.InsecureRequestWarning
-			)
+            urllib3.exceptions.InsecureRequestWarning
+            )
                 req = requests.get(
-				url = url,
-				headers = headers,
-				verify = False,
-				allow_redirects = redirect,
-				timeout = int(timeout) if timeout != None else None,
-				proxies = proxies
-				)
+                url = url,
+                headers = headers,
+                verify = False,
+                allow_redirects = redirect,
+                timeout = int(timeout) if timeout != None else None,
+                proxies = proxies
+                )
                 return req.status_code,req.content
         except Exception as err:
             if k_.get('d_list'):
@@ -168,6 +170,7 @@ def help(_exit_=False):
         print("\t-o\tUse this settings for save a file, args=json or text")
         print("\t-T\tSet a request timeout,default value is 20 seconds")
         print("\t-k\tProcess 200 http code, cause more false positive")
+        print("\t-u\tSet custom user agent (e.g: takeover-bot)")
         print("\t-v\tVerbose, print more info\n")
         if _exit_:
                 sys.exit()
@@ -207,7 +210,7 @@ def runner(k):
         threadpool = thread.ThreadPoolExecutor(max_workers=k.get('threads'))
         if k.get('verbose'):
             info('Set %s threads..'%k.get('threads'))
-        futures = (threadpool.submit(requester,domain,k.get("proxy"),k.get("timeout"),
+        futures = (threadpool.submit(requester,domain,k.get("proxy"),k.get("timeout"), k.get("user_agent"),
                 k.get("output"),k.get('process'),k.get('verbose')) for domain in k.get("domains"))
         for i,results in enumerate(thread.as_completed(futures)):
             if k.get('verbose') and k.get('d_list'):
@@ -221,8 +224,8 @@ def runner(k):
                 info('Domain: {}'.format(k.get('domains')[i]))
             pass
 
-def requester(domain,proxy,timeout,output,ok,v):
-        code,html = request(domain,proxy,timeout)
+def requester(domain,proxy,timeout,user_agent,output,ok,v):
+        code,html = request(domain,proxy,timeout,user_agent)
         service,error = find(code,html,ok)
         if service and error:
                 if output:
@@ -283,8 +286,8 @@ def main():
                 help(1)
         try:
                 opts,args = getopt.getopt(sys.argv[1:],
-                        'd:l:p:o:t:T:kv',
-                        ['d=','l=','p=','v','o=','t=','T=','k'])
+                        'd:l:p:o:t:T::u:kv',
+                        ['d=','l=','p=','v','o=','t=','T=','u=','k'])
         except Exception as e:
                 warn(e,1)
         for o,a in opts:
@@ -295,6 +298,7 @@ def main():
                 if o == '-o': k_['output'] = a 
                 if o == '-T': k_['timeout'] = int(a)
                 if o == '-k': k_['process'] = True
+                if o == '-u': k_['user_agent'] = a
                 if o == '-v': k_['verbose'] = True
 
         if k_.get("domain") or k_.get("d_list"):

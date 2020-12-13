@@ -8,57 +8,60 @@ Sub-domain takeover vulnerability occur when a sub-domain (**subdomain.example.c
 ## Supported Services
 
 ```
+'Acquia'
+'ActiveCampaign'
+'Aftership'
+'Aha'
 'AWS/S3'
+'Bigcartel'
 'BitBucket'
+'Brightcove'
+'Campaignmonitor'
+'Cargo'
 'CloudFront'
-'Github'
-'Shopify'
 'Desk'
 'Fastly'
 'FeedPress'
+'GetResponse'
 'Ghost'
-'Heroku'
-'Pantheon'
-'Tumbler'
-'Wordpress'
-'Desk'
-'ZenDesk'
-'TeamWork'
+'Github'
 'Helpjuice'
 'Helpscout'
-'S3Bucket'
-'Cargo'
-'StatuPage'
-'Uservoice'
-'Surge'
+'Heroku'
 'Intercom'
-'Webflow'
-'Kajabi'
-'Thinkific'
-'Tave'
-'Wishpond'
-'Aftership'
-'Aha'
-'Tictail'
-'Brightcove'
-'Bigcartel'
-'ActiveCampaign'
-'Campaignmonitor'
-'Acquia'
-'Proposify'
-'Simplebooklet'
-'GetResponse'
-'Vend'
 'Jetbrains'
-'Unbounce'
-'Tictail'
-'Smartling'
-'Pingdom'
-'Tilda'
-'Surveygizmo'
+'Kajabi'
 'Mashery'
+'Pantheon'
+'Pingdom'
+'Proposify'
+'S3Bucket'
+'Shopify'
+'Simplebooklet'
+'Smartling'
+'StatuPage'
+'Surge'
+'Surveygizmo'
+'Tave'
+'TeamWork'
+'Thinkific'
+'Tictail'
+'Tilda'
+'Tumbler'
+'Unbounce'
+'Uservoice'
+'Vend'
+'Webflow'
+'Wishpond'
+'Wordpress'
+'ZenDesk'
+'feedpress'
+'readme'
+'statuspage'
+'zendesk'   
+'worksites.net'                                    
+'smugmug'
 ```
-
 ## Installation:
 
 ```shell
@@ -83,3 +86,18 @@ $ python3 takeover.py -d www.domain.com -o <output.txt> or <output.json> -v
 $ python3 takeover.py -l uber-sub-domains.txt -o output.txt -p http://xxx.xxx.xxx.xxx:8080 -v 
 $ python3 takeover.py -d uber-sub-domains.txt -o output.txt -T 3 -v 
 ```
+
+## Docker support
+
+Build the image:
+
+```
+docker build -t takeover .
+```
+
+Run the container:
+
+```
+docker run -it --rm takeover -d www.domain.com -v
+```
+
